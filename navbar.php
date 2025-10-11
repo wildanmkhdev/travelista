@@ -4,6 +4,12 @@ if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
 ?>
+<style>
+  a {
+    text-decoration: none !important;
+    color: black !important;
+  }
+</style>
 <header id="header">
   <!-- Top Header -->
   <div class="header-top">
@@ -32,32 +38,34 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="d-flex justify-content-between align-items-center">
       <!-- Logo -->
       <div id="logo">
-        <a href="index.php"><img src="img/logo.png" alt="Logo" height="40" /></a>
+        <h2 class="text-white fw-5">Magical Travel</h2>
       </div>
 
       <!-- Menu + User -->
       <ul class="nav align-items-center">
-        <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="hotels.php">Hotels</a></li>
-        <li class="nav-item"><a class="nav-link" href="insurance.php">Insurance</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
+        <li class="nav-item"><a class="nav-link text-white fs-5" href="index.php">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-white fs-5" href=" about.php">About</a></li>
+        <li class="nav-item"><a class="nav-link text-white fs-5" href=" hotels.php">Hotels</a></li>
+        <li class="nav-item"><a class="nav-link text-white fs-5" href=" insurance.php">Insurance</a></li>
+        <li class="nav-item"><a class="nav-link text-white fs-5" href=" contact.php">Contact</a></li>
 
-        <?php if (isset($_SESSION['role']) && $_SESSION['role'] != ""): ?>
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'user'): ?>
           <!-- User sudah login -->
+
+          <li class="nav-item"><a class="nav-link text-white"" href=" my-booking.php">View My Booking</a></li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <?= htmlspecialchars($_SESSION['role']) ?>
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+              <li><a class="dropdown-item " href="logout.php">Logout</a></li>
             </ul>
           </li>
-          <li class="nav-item"><a class="nav-link" href="my-booking.php">View My Booking</a></li>
         <?php else: ?>
-          <!-- Belum login -->
-          <li class="nav-item"><a class="btn btn-primary" href="login.php">Login</a></li>
+          <!-- Belum login atau bukan user -->
+          <li class="nav-item"><a class="btn btn-primary text-white" href="login.php">Login</a></li>
         <?php endif; ?>
+
       </ul>
     </div>
   </div>
